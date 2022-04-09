@@ -1,0 +1,33 @@
+.parent {
+	width: 100%;
+	padding: 55px 90px;
+	position: relative;
+
+	.content {
+		margin-top: 50px;
+		.contentChildren{
+			display: flex;
+
+			& div:nth-child(1){
+				flex: 1 1 30%;
+
+			}
+				.imgParent{
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex: 1 1 30%;
+
+					img{
+						width: 150px;
+						height: 150px;
+				}
+			}
+		}
+	}
+	.inputs{
+		display: flex;
+		flex-direction: column;
+		row-gap: 15px;
+	}
+}

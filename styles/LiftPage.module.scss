@@ -1,0 +1,71 @@
+.parent {
+	width: 100%;
+	padding: 55px 90px;
+	position: relative;
+
+	.content {
+		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		row-gap: 15px;
+		column-gap: 15px;
+		position: relative;
+		width: 100%;
+
+		.liftInfoContainer {
+			flex: 1 1 auto;
+		}
+
+		.liftInfoCard {
+			display: flex;
+			column-gap: 25px;
+			height: fit-content;
+			position: relative;
+
+			.logo {
+				flex: 0 0 150px;
+				width: 250px;
+				height: 250px;
+				object-fit: cover;
+			}
+
+			.liftInfo {
+				flex: 1 1 auto;
+				display: flex;
+				flex-direction: column;
+				row-gap: 1px;
+				font-size: 16px;
+
+				& > div {
+					line-height: 1.5;
+				}
+
+				.buttonContainer {
+					align-self: flex-end;
+					display: flex;
+					justify-content: flex-end;
+					align-items: flex-end;
+					width: 100%;
+
+					& > * {
+						width: fit-content !important;
+					}
+				}
+			}
+
+
+		}
+
+		.graphParent {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: repeat(3, 1fr);
+			column-gap: 30px;
+			row-gap: 30px;
+
+			& > * {
+				flex: 1 1 50px;
+			}
+		}
+	}
+}

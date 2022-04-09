@@ -1,0 +1,49 @@
+.parent {
+	display: flex;
+
+	.leftMenu {
+		position: relative;
+		z-index: 2;
+		max-width: 350px;
+		min-width: 350px;
+		height: 100vh;
+		-webkit-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+		-moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+		box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
+
+		.menuHeader {
+			display: flex;
+			align-items: center;
+			column-gap: 15px;
+			padding: 15px 15px;
+			h2{
+				margin: 0px;
+			}
+			.logo{
+				border-radius: 100%;
+				object-fit: contain;
+			}
+		}
+		.menuButtons{
+			& div:nth-child(n){
+				padding: 20px 25px;
+				background-color: #f8f8f8;
+				border-bottom: 1px #b4b4b4 solid;
+				cursor: pointer;
+
+				&:hover{
+					background-color: #eaeaea;
+				}
+			}
+			& div:nth-child(1){
+				padding: 0px;
+			}
+		}
+	}
+
+	.content {
+		background-color: #f1f1f1;
+		width: 100%;
+	}
+
+}
