@@ -1,11 +1,11 @@
 import styles from '../../../styles/LiftPage.module.scss';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import Graph from '../../d3/graph';
 import { Button, Card } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
-import Script from 'next/script';
 import RoundChart from '../../d3/RoundChart';
+import { io } from 'socket.io-client';
 
 declare global {
  export interface Window {
@@ -18,6 +18,19 @@ export default function LiftPage() {
  const lift = state.lifts.find(
   (e: LiftObjectInterface) => e.id === state.liftId
  );
+ const [chart1, setChart1] = useState({});
+
+ useEffect(() => {
+  const socket = io('http://192.168.137.55:8099', {
+   path: '/case/2/ws/socket.io',
+   transports: ['websocket'],
+   auth: {},
+  });
+
+  socket.on('change_color', (...args: any) => {
+   setChart1({ x: args[0].x, y: args[0].y });
+  });
+ }, []);
 
  return (
   <div className={styles.parent}>
@@ -69,13 +82,13 @@ export default function LiftPage() {
     </Card>
     <div className={styles.chartsParent}>
      <Card>
-      <Graph />
+      <Graph data={chart1} />
      </Card>
      <Card>
-      <Graph />
+      <Graph data={chart1} />
      </Card>
      <Card>
-      <Graph />
+      <Graph data={chart1} />
      </Card>
     </div>
    </div>
