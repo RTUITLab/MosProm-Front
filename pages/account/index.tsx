@@ -4,47 +4,30 @@ import Image from 'next/image';
 import { Menu } from 'antd';
 import GlobalContext from '../../contexts/globalContext';
 import { QrcodeOutlined, UnorderedListOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Switch from '../../components/accountChapters/switch';
 import { LiftObjectInterface } from '../../types/liftObject';
+import getLiftsList from '../../services/getLiftsList';
 
 const { SubMenu } = Menu;
 
 export default function Index(props: any) {
- const lifts: LiftObjectInterface[] = [
-  {
-   title: 'Какой-то лифт',
-   address: 'Moscow',
-   id: '12',
-   model: 'Standart',
-   service: { name: 'name' },
-  },
-  {
-   title: 'Какой-то лифт',
-   address: 'Moscow',
-   id: '12',
-   model: 'Standart',
-   service: { name: 'name' },
-  },
-  {
-   title: 'Какой-то лифт',
-   address: 'Moscow',
-   id: '12',
-   model: 'Standart',
-   service: { name: 'name' },
-  },
- ];
-
  const [state, editState] = useState({
   activeView: '1',
-  lifts,
+  lifts: [],
+  loading: false,
  });
  const setState = (e: object) => {
   editState({ ...state, ...e });
  };
 
- // @ts-ignore
- // @ts-ignore
+ useEffect(() => {
+  setState({ loading: true });
+  getLiftsList().then((r) => {
+   setState({ lifts: r, loading: false });
+  });
+ }, []);
+
  return (
   <GlobalContext.Provider
    value={{

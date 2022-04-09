@@ -33,6 +33,19 @@
 				border-radius: 15px;
 			}
 
+			.roundCharts{
+				height: 100px;
+				width: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+
+				span{
+					color: #939393;
+					font-weight: bold;
+				}
+			}
 		}
 
 		.mainChart{

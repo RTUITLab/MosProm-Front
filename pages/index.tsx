@@ -1,12 +1,14 @@
 import type { GetStaticProps, NextPage } from 'next';
 import styles from '../styles/index.module.scss';
 import { Button, Input } from 'antd';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { getToken } from '../services/login';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Home(props: any) {
  const login: React.Ref<any> = useRef();
  const password: any = useRef();
+ const [load, setLoad] = useState(false);
 
  return (
   <div className={styles.parent}>
@@ -18,12 +20,21 @@ export default function Home(props: any) {
      <Button
       type="primary"
       block
+      icon={load ? <LoadingOutlined /> : null}
       onClick={() => {
-       getToken(login.current.value, password.current.value).then((e) => {
-        alert(e);
-       });
+       setLoad(true);
+       getToken(login.current.input.value, password.current.input.value)
+        .then((e: any) => {
+         localStorage.setItem('access_token', e);
+         window.location.href = '/account';
+         setLoad(false);
+        })
+        .catch((e) => {
+         alert('Ошибка авторизации');
+         setLoad(false);
+        });
       }}>
-      Войти
+      {load ? null : 'Войти'}
      </Button>
     </div>
    </div>

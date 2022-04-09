@@ -5,6 +5,7 @@ import Graph from '../../d3/graph';
 import { Button, Card } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
 import Script from 'next/script';
+import RoundChart from '../../d3/RoundChart';
 
 declare global {
  export interface Window {
@@ -31,6 +32,20 @@ export default function LiftPage() {
         <span className={styles.statusSpan}>Исправен</span>
        </div>
        <p>{lift.address}</p>
+      </div>
+      <div style={{ display: 'flex', columnGap: '20px' }}>
+       <div className={styles.roundCharts}>
+        <RoundChart percentage={100} />
+        <span>Влажность</span>
+       </div>
+       <div className={styles.roundCharts}>
+        <RoundChart percentage={60} />
+        <span>Влажность</span>
+       </div>
+       <div className={styles.roundCharts}>
+        <RoundChart percentage={50} />
+        <span>Влажность</span>
+       </div>
       </div>
       <Button
        onClick={() => {

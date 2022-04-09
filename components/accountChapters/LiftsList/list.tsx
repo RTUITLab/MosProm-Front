@@ -1,10 +1,15 @@
 import styles from '../../../styles/list.module.scss';
 import { useContext } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
-import { Button, Card, Input, Layout } from 'antd';
-import Image from 'next/image';
+import { Button, Card, Input, Layout, Spin } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
-import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import RoundChart from '../../d3/RoundChart';
+import {
+ DeleteOutlined,
+ EditOutlined,
+ LoadingOutlined,
+ PlusOutlined,
+} from '@ant-design/icons';
 import React from 'react';
 
 export default function List(props: any) {
@@ -70,6 +75,17 @@ export default function List(props: any) {
        );
       })}
      </table>
+     {state.loading ? (
+      <div
+       style={{
+        width: '100%',
+        display: 'flex',
+        paddingTop: '20px',
+        justifyContent: 'center',
+       }}>
+       <Spin size="large" />{' '}
+      </div>
+     ) : null}
     </Card>
    </div>
   </div>
