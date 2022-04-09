@@ -15,12 +15,33 @@
 	}
 
 	.list {
+		width: 100%;
 		margin-top: 15px;
-		display: flex;
-		flex-wrap: wrap;
-		row-gap: 15px;
-		column-gap: 15px;
+		table{
+			width: 100%;
+			tr{
+				th{
+					padding: 10px 0px;
 
+					text-align: left;
+					color: #a6a6a6;
+				}
+				td{
+					padding: 10px 0px;
+
+					& *:nth-child(n){
+						border: none
+					}
+				}
+			}
+		}
+		.statusSpan{
+			background-color: #d3ffd3;
+			color: #88b688;
+			font-weight: bold;
+			padding: 5px 15px;
+			border-radius: 15px;
+		}
 	}
 }
 .cardContainer{

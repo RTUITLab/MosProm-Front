@@ -10,13 +10,28 @@ import { LiftObjectInterface } from '../../types/liftObject';
 
 const { SubMenu } = Menu;
 
-export default function index(props: any) {
+export default function Index(props: any) {
  const lifts: LiftObjectInterface[] = [
   {
    title: 'Какой-то лифт',
    address: 'Moscow',
    id: '12',
    model: 'Standart',
+   service: { name: 'name' },
+  },
+  {
+   title: 'Какой-то лифт',
+   address: 'Moscow',
+   id: '12',
+   model: 'Standart',
+   service: { name: 'name' },
+  },
+  {
+   title: 'Какой-то лифт',
+   address: 'Moscow',
+   id: '12',
+   model: 'Standart',
+   service: { name: 'name' },
   },
  ];
 

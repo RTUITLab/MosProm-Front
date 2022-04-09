@@ -5,12 +5,7 @@ import Chart from 'chart.js/auto';
 export default function Graph() {
  const options = {
   responsive: true,
-  plugins: {
-   title: {
-    display: true,
-    text: 'Состояние лифта',
-   },
-  },
+  plugins: {},
  };
  const labels = [
   'January',

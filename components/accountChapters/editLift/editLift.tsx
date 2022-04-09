@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import { LiftObjectInterface } from '../../../types/liftObject';
 
-export default function editLift() {
+export default function EditLift() {
  const { state, setState } = useContext(GlobalContext);
  let lift = state.lifts.find((e: LiftObjectInterface) => e.id === state.liftId);
 
@@ -35,12 +35,13 @@ export default function editLift() {
          <AutoComplete
           style={{ width: '100%' }}
           placeholder="Адрес"
-          defaultValue={''}
+          defaultValue={lift.address || ''}
          />
         </Input.Group>
         <br />
         <AutoComplete
          style={{ width: '100%' }}
+         defaultValue={lift?.service?.name || ''}
          placeholder="Управляющая компания"
          options={[{ value: 'text 1' }, { value: 'text 2' }]}
         />
@@ -49,7 +50,13 @@ export default function editLift() {
         <Input placeholder={'MAC-адрес'} defaultValue={lift.MAC || ''} />
        </div>
        <br />
-       <Button type={'primary'}>Сохранить</Button>
+       <Button
+        type={'primary'}
+        onClick={() => {
+         setState({ activeView: '1' });
+        }}>
+        Сохранить
+       </Button>
       </div>
       <div className={styles.imgParent}>
        <img src="/images/elevator.png" alt="" />

@@ -1,10 +1,8 @@
 import styles from '../../../styles/LiftPage.module.scss';
-import { lazy, useContext } from 'react';
+import { useContext } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
-import dynamic from 'next/dynamic';
 import Graph from '../../d3/graph';
-import { Button, Card } from 'antd';
-import Image from 'next/image';
+import { Card } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
 
 export default function LiftPage() {
@@ -18,43 +16,32 @@ export default function LiftPage() {
    <h1>Информация о лифте</h1>
    <div className={styles.content}>
     <Card className={styles.liftInfoContainer}>
-     <div className={styles.liftInfoCard}>
-      <img className={styles.logo} src={'/images/liftExample.png'} />
-      <div className={styles.liftInfo}>
-       <h2>{lift.title}</h2>
-       <div>
-        <b>Адрес:</b> {lift.address}
-       </div>
-       <div>
-        <b>Модель: </b>
-        {lift.model}
-       </div>
-      </div>
+     <h2>{lift.model}</h2>
+     <p>{lift.address}</p>
+    </Card>
+
+    <Card style={{ padding: '0px' }}>
+     <div className={styles.mainChart}>
       <div>
-       <Button>Редактировать</Button>
+       <Graph />
+      </div>
+      <div className={styles.descChart}>
+       <div className={styles.bigText}>$850.454.2</div>
+       <span>Total income</span>
       </div>
      </div>
     </Card>
-    <Card>
-     <h2>Состояние</h2>
-     <div className={styles.graphParent}>
-      <div>
-       <Graph />
-      </div>
-      <div>
-       <Graph />
-      </div>
-      <div>
-       <Graph />
-      </div>
-      <div>
-       <Graph />
-      </div>
-      <div>
-       <Graph />
-      </div>
-     </div>
-    </Card>
+    <div className={styles.chartsParent}>
+     <Card>
+      <Graph />
+     </Card>
+     <Card>
+      <Graph />
+     </Card>
+     <Card>
+      <Graph />
+     </Card>
+    </div>
    </div>
   </div>
  );
