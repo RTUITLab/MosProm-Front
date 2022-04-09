@@ -1,6 +1,6 @@
 export function getToken(login: string, password: string) {
  return new Promise((_, reject) => {
-  fetch('http://192.168.137.207:8000' + '/users/token', {
+  fetch(process.env.NEXT_PUBLIC_ANALYTICS_ID + '/users/token', {
    method: 'POST',
    body: JSON.stringify({ username: login, password }),
   })

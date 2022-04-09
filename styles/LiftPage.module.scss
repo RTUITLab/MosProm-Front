@@ -13,12 +13,26 @@
 		width: 100%;
 
 		.liftInfoContainer {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+
 			h2{
 				margin-bottom: 0px;
 			}
 			p{
 				color: gray;
 			}
+			.statusSpan{
+				background-color: #d3ffd3;
+				color: #88b688;
+				font-weight: bold;
+				padding: 4px 10px;
+				font-size: 12px;
+				line-height: 22px;
+				border-radius: 15px;
+			}
+
 		}
 
 		.mainChart{

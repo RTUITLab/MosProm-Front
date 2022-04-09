@@ -1,9 +1,16 @@
 import styles from '../../../styles/LiftPage.module.scss';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import Graph from '../../d3/graph';
-import { Card } from 'antd';
+import { Button, Card } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
+import Script from 'next/script';
+
+declare global {
+ export interface Window {
+  PieChart?: any;
+ }
+}
 
 export default function LiftPage() {
  const { state, setState } = useContext(GlobalContext);
@@ -15,9 +22,23 @@ export default function LiftPage() {
   <div className={styles.parent}>
    <h1>Информация о лифте</h1>
    <div className={styles.content}>
-    <Card className={styles.liftInfoContainer}>
-     <h2>{lift.model}</h2>
-     <p>{lift.address}</p>
+    <Card>
+     <div className={styles.liftInfoContainer}>
+      <div>
+       <div
+        style={{ display: 'flex', columnGap: '15px', alignItems: 'center' }}>
+        <h2>{lift.model}</h2>
+        <span className={styles.statusSpan}>Исправен</span>
+       </div>
+       <p>{lift.address}</p>
+      </div>
+      <Button
+       onClick={() => {
+        setState({ activeView: 'editLift', liftId: lift.id });
+       }}>
+       Редактировать
+      </Button>
+     </div>
     </Card>
 
     <Card style={{ padding: '0px' }}>

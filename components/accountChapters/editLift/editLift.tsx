@@ -45,9 +45,6 @@ export default function EditLift() {
          placeholder="Управляющая компания"
          options={[{ value: 'text 1' }, { value: 'text 2' }]}
         />
-        <br />
-        <br />
-        <Input placeholder={'MAC-адрес'} defaultValue={lift.MAC || ''} />
        </div>
        <br />
        <Button
