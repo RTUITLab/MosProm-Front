@@ -37,8 +37,12 @@ export default function EditLift() {
           }}
           style={{ width: '100%' }}
           defaultValue={''}>
-          {all.map((e: any) => {
-           return <Option value={e}>{e}</Option>;
+          {all.map((e: any, i: number) => {
+           return (
+            <Option key={i} value={e}>
+             {e}
+            </Option>
+           );
           })}
          </Select>
         </Input.Group>
