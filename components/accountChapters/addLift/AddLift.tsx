@@ -1,13 +1,14 @@
 import styles from '../../../styles/editLift.module.scss';
 import { AutoComplete, Button, Card, Cascader, Input, Select } from 'antd';
 import { Option } from 'antd/lib/mentions';
-import { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import { LiftObjectInterface } from '../../../types/liftObject';
 
 export default function EditLift() {
  const { state, setState } = useContext(GlobalContext);
  let lift = state.lifts.find((e: LiftObjectInterface) => e.id === state.liftId);
+ const input: any = useRef<React.Ref<any>>();
 
  lift = lift || {};
  return (
@@ -31,6 +32,7 @@ export default function EditLift() {
        <Button
         type={'primary'}
         onClick={() => {
+         let mac = input.current.input.value;
          setState({ activeView: '1' });
         }}>
         Добавить
