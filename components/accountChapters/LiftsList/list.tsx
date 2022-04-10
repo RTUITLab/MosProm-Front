@@ -1,17 +1,11 @@
 import styles from '../../../styles/list.module.scss';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
-import { Button, Card, Input, Layout, Spin } from 'antd';
+import { Button, Card, Input, Spin } from 'antd';
 import { LiftObjectInterface } from '../../../types/liftObject';
-import RoundChart from '../../d3/RoundChart';
-import {
- DeleteOutlined,
- EditOutlined,
- LoadingOutlined,
- PlusOutlined,
-} from '@ant-design/icons';
-import React from 'react';
-import { io } from 'socket.io-client';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import deleteElevator from '../../../services/deleteElevator';
+import getLiftsList from '../../../services/getLiftsList';
 
 export default function List(props: any) {
  const { state, setState } = useContext(GlobalContext);
@@ -33,15 +27,6 @@ export default function List(props: any) {
    <div className={styles.list}>
     <Card>
      <table>
-      <tr>
-       <th>Модель</th>
-       <th>Адрес</th>
-       <th>Название</th>
-       <th>Статус</th>
-       <th>Операции</th>
-       <th>Управляющая</th>
-       <th>Действие</th>
-      </tr>
       {state.lifts.map((e: LiftObjectInterface) => {
        return (
         <React.Fragment key={e.id}>
@@ -59,9 +44,19 @@ export default function List(props: any) {
              setState({ activeView: 'editLift', liftId: e.id });
             }}
            />
-           <Button icon={<DeleteOutlined />} />
+           <Button
+            icon={<DeleteOutlined />}
+            onClick={() => {
+             deleteElevator(e.id).then(() => {
+              getLiftsList(false).then((e) => {
+               setState({ lifts: e, loading: false });
+              });
+             });
+             setState({ loading: true, lifts: [] });
+            }}
+           />
           </td>
-          <td>{e.service.name}</td>
+          <td>{e.service ? e.service.name : '-'}</td>
           <td>
            <Button
             type={'primary'}
@@ -75,6 +70,17 @@ export default function List(props: any) {
         </React.Fragment>
        );
       })}
+      <thead>
+       <tr>
+        <th>Модель</th>
+        <th>Адрес</th>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>Операции</th>
+        <th>Управляющая</th>
+        <th>Действие</th>
+       </tr>
+      </thead>
      </table>
      {state.loading ? (
       <div

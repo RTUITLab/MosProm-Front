@@ -20,7 +20,7 @@
 			h2{
 				margin-bottom: 0px;
 			}
-			p{
+			span{
 				color: gray;
 			}
 			.statusSpan{
@@ -87,4 +87,18 @@
 			row-gap: 15px;
 		}
 	}
+}
+
+@media (max-width: 1200px) {
+		.parent{
+			padding: 20px;
+			.content{
+				.liftInfoContainer{
+					flex-direction: column;
+					column-gap: 20px;
+					row-gap: 20px;
+					align-items: center;
+				}
+			}
+		}
 }

@@ -1,16 +1,23 @@
 import styles from '../../../styles/editLift.module.scss';
 import { AutoComplete, Button, Card, Cascader, Input, Select } from 'antd';
 import { Option } from 'antd/lib/mentions';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import { LiftObjectInterface } from '../../../types/liftObject';
 import getLiftsList from '../../../services/getLiftsList';
-import addLift from '../../../services/addLift'
+import addLift from '../../../services/addLift';
 
 export default function EditLift() {
  const { state, setState } = useContext(GlobalContext);
  let lift = state.lifts.find((e: LiftObjectInterface) => e.id === state.liftId);
- const input: any = useRef<React.Ref<any>>();
+ const [all, setAll] = useState([]);
+ const [mac, setMac] = useState();
+
+ useEffect(() => {
+  getLiftsList(true).then((e: any) => {
+   setAll(e.map((j: any) => j.MAC));
+  });
+ }, []);
 
  lift = lift || {};
  return (
@@ -24,20 +31,28 @@ export default function EditLift() {
        <h2>MAC-адрес</h2>
        <div style={{ maxWidth: '600px' }}>
         <Input.Group compact>
-         <Input
-          placeholder={'Введите MAC-адрес'}
-          defaultValue={lift.title || ''}
-          ref={input}
-         />
+         <Select
+          onSelect={(e: any) => {
+           setMac(e);
+          }}
+          style={{ width: '100%' }}
+          defaultValue={''}>
+          {all.map((e: any) => {
+           return <Option value={e}>{e}</Option>;
+          })}
+         </Select>
         </Input.Group>
        </div>
        <br />
        <Button
         type={'primary'}
         onClick={() => {
-         let mac = input.current.input.value;
-         addLift(mac);
-         setState({ activeView: '1' });
+         setState({ activeView: '1', loading: true, lifts: [] });
+         addLift(mac).then(() => {
+          getLiftsList(false).then((e) => {
+           setState({ lifts: e, loading: false, activeView: '1' });
+          });
+         });
         }}>
         Добавить
        </Button>

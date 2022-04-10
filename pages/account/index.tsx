@@ -4,8 +4,11 @@ import Image from 'next/image';
 import { Button, Menu } from 'antd';
 import GlobalContext from '../../contexts/globalContext';
 import {
+ ContactsOutlined,
  MenuFoldOutlined,
  MenuUnfoldOutlined,
+ NotificationOutlined,
+ OrderedListOutlined,
  QrcodeOutlined,
  UnorderedListOutlined,
 } from '@ant-design/icons';
@@ -35,7 +38,7 @@ export default function Index(props: any) {
 
  useEffect(() => {
   setState({ loading: true });
-  getLiftsList().then((r) => {
+  getLiftsList(false).then((r) => {
    setState({ lifts: r, loading: false });
   });
  }, []);
@@ -84,6 +87,15 @@ export default function Index(props: any) {
       </Menu.Item>
       <Menu.Item key="2" icon={<QrcodeOutlined />}>
        Отсканировать QR
+      </Menu.Item>
+      <Menu.Item key="3" icon={<NotificationOutlined />}>
+       Репорты
+      </Menu.Item>
+      <Menu.Item key="4" icon={<OrderedListOutlined />}>
+       Задачи
+      </Menu.Item>
+      <Menu.Item key="5" icon={<ContactsOutlined />}>
+       Контакты
       </Menu.Item>
      </Menu>
     </div>
