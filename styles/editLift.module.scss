@@ -10,7 +10,6 @@
 
 			& div:nth-child(1){
 				flex: 1 1 30%;
-
 			}
 				.imgParent{
 					display: flex;
@@ -29,5 +28,21 @@
 		display: flex;
 		flex-direction: column;
 		row-gap: 15px;
+	}
+}
+
+@media (max-width: 900px) {
+	.parent{
+		padding: 30px;
+		.content{
+			.contentChildren{
+				& div:nth-child(1){
+					flex: 1 1 100%;
+				}
+				.imgParent{
+					display: none;
+				}
+			}
+		}
 	}
 }

@@ -77,3 +77,16 @@
 		}
 	}
 }
+
+@media (max-width: 1400px) {
+	.parent{
+		padding: 30px;
+		max-width: 80vw;
+		.list{
+			overflow: auto;
+			& > *{
+				min-width: 700px;
+			}
+		}
+	}
+}

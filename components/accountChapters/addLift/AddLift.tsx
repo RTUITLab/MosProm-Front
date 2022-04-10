@@ -12,39 +12,20 @@ export default function EditLift() {
  lift = lift || {};
  return (
   <div className={styles.parent}>
-   <h1>Редактирование лифта</h1>
+   <h1>Поиск лифта</h1>
 
    <div className={styles.content}>
     <Card>
      <div className={styles.contentChildren}>
       <div>
-       <h2>Информация</h2>
+       <h2>MAC-адрес</h2>
        <div style={{ maxWidth: '600px' }}>
         <Input.Group compact>
-         <Input placeholder={'Название'} defaultValue={lift.title || ''} />
-         <br />
-         <br />
-         <Select
-          style={{ width: '100%' }}
-          defaultValue={lift.model || 'Standart'}>
-          <Option value={'Home'}>Standart</Option>
-          <Option value={'Company'}>Premium</Option>
-         </Select>
-         <br />
-         <br />
-         <AutoComplete
-          style={{ width: '100%' }}
-          placeholder="Адрес"
-          defaultValue={lift.address || ''}
+         <Input
+          placeholder={'Введите MAC-адрес'}
+          defaultValue={lift.title || ''}
          />
         </Input.Group>
-        <br />
-        <AutoComplete
-         style={{ width: '100%' }}
-         defaultValue={lift?.service?.name || ''}
-         placeholder="Управляющая компания"
-         options={[{ value: 'text 1' }, { value: 'text 2' }]}
-        />
        </div>
        <br />
        <Button
@@ -52,7 +33,7 @@ export default function EditLift() {
         onClick={() => {
          setState({ activeView: '1' });
         }}>
-        Сохранить
+        Добавить
        </Button>
       </div>
       <div className={styles.imgParent}>

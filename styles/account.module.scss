@@ -2,8 +2,10 @@
 	display: flex;
 
 	.leftMenu {
-		position: relative;
+		position: absolute;
+		transition: all 250ms ease	;
 		z-index: 2;
+		background-color: white;
 		max-width: 350px;
 		min-width: 350px;
 		height: 100vh;
@@ -11,13 +13,33 @@
 		-moz-box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
 		box-shadow: 4px 0px 8px 0px rgba(34, 60, 80, 0.2);
 
+		&[menuHidden=true]{
+			max-width: 80px;
+			min-width: 80px;
+
+			.menuHeader{
+				opacity: 0;
+				height: 0px;
+			}
+		}
+
+		.buttonContainer{
+			padding: 20px;
+
+		}
+
 		.menuHeader {
+
+			transition: all 250ms ease;
 			display: flex;
 			align-items: center;
 			column-gap: 15px;
 			padding: 15px 15px;
 			h2{
 				margin: 0px;
+				font-size: 18px;
+				font-weight: 200;
+				line-height: 20px;
 			}
 			.logo{
 				border-radius: 100%;
@@ -42,8 +64,11 @@
 	}
 
 	.content {
+		padding-left: 80px;
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
 		background-color: #f1f1f1;
 		width: 100%;
 	}
-
 }

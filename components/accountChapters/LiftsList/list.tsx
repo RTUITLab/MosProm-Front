@@ -26,7 +26,7 @@ export default function List(props: any) {
      type="primary"
      icon={<PlusOutlined />}
      onClick={() => {
-      setState({ activeView: 'editLift', liftId: undefined });
+      setState({ activeView: 'addLift', liftId: undefined });
      }}
     />
    </div>
