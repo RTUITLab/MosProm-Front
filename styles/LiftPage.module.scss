@@ -93,6 +93,15 @@
 		.parent{
 			padding: 20px;
 			.content{
+				.chartsParent{
+					grid-template-columns: 1fr;
+				}
+				.mainChart{
+					flex-direction: column;
+					.descChart{
+						display: none;
+					}
+				}
 				.liftInfoContainer{
 					flex-direction: column;
 					column-gap: 20px;
@@ -101,4 +110,16 @@
 				}
 			}
 		}
+}
+
+@media (max-width: 800px) {
+	.parent{
+		.content{
+			.mainChart{
+				.descChart{
+					display: none;
+				}
+			}
+		}
+	}
 }

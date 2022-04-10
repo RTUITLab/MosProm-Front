@@ -1,5 +1,5 @@
 import styles from '../../../styles/LiftPage.module.scss';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import Graph3 from '../../d3/graph3';
 import { Button, Card } from 'antd';
@@ -134,11 +134,11 @@ export default function LiftPage() {
        </div>
        <div className={styles.roundCharts}>
         <RoundChart percentage={60} />
-        <span>Влажность</span>
+        <span>Обороты</span>
        </div>
        <div className={styles.roundCharts}>
         <RoundChart percentage={50} />
-        <span>Влажность</span>
+        <span>Вибрация</span>
        </div>
       </div>
       <Button
