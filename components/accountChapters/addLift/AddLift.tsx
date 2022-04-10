@@ -4,6 +4,8 @@ import { Option } from 'antd/lib/mentions';
 import React, { useContext, useRef } from 'react';
 import GlobalContext from '../../../contexts/globalContext';
 import { LiftObjectInterface } from '../../../types/liftObject';
+import getLiftsList from '../../../services/getLiftsList';
+import addLift from '../../../services/addLift'
 
 export default function EditLift() {
  const { state, setState } = useContext(GlobalContext);
@@ -25,6 +27,7 @@ export default function EditLift() {
          <Input
           placeholder={'Введите MAC-адрес'}
           defaultValue={lift.title || ''}
+          ref={input}
          />
         </Input.Group>
        </div>
@@ -33,6 +36,7 @@ export default function EditLift() {
         type={'primary'}
         onClick={() => {
          let mac = input.current.input.value;
+         addLift(mac);
          setState({ activeView: '1' });
         }}>
         Добавить
